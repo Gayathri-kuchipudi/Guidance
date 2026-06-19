@@ -1,4 +1,4 @@
-##enter one by one command to install jenkins on amazon linux##
+####enter one by one command to install jenkins on amazon linux####
 
 #!/bin/bash
 set -e
