@@ -1,0 +1,25 @@
+##Use these commands one by one if you face built offline issue due to diskspace in the server##
+
+# Check Jenkins service status
+systemctl status jenkins.service
+
+# Create a new directory for temporary disk
+sudo mkdir -p /var/tmp_disk
+
+# Set correct permissions (world-writable with sticky bit)
+sudo chmod 1777 /var/tmp_disk
+
+# Bind mount the new directory to /tmp
+sudo mount --bind /var/tmp_disk /tmp
+
+# Make the bind mount persistent across reboots
+echo '/var/tmp_disk /tmp none bind 0 0' | sudo tee -a /etc/fstab
+
+# Mask the default tmp.mount unit so systemd doesn’t override
+sudo systemctl mask tmp.mount
+
+# Verify available space on /tmp
+df -h /tmp
+
+# Restart Jenkins service
+sudo systemctl restart jenkins
