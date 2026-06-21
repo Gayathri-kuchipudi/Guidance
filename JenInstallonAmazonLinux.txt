@@ -25,3 +25,7 @@ sudo systemctl start jenkins
 
 # Check status
 sudo systemctl status jenkins
+
+#git installation
+yum install git -y
+
